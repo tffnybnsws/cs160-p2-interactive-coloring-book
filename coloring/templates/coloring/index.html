@@ -118,88 +118,20 @@
 	     -o-transform-origin: @x @y;
 	        transform-origin: @x @y;
 }
-		.color-palette {
+		#color-palette {
       right: 0px;
       top: 300px;
-      width: 300px;
-			height: 500px;
+      width: 200px;
+			height: 700px;
       overflow: hidden;
 			background-color: #f1f1f1;
 			display: flex;
 			flex-wrap: wrap;
 			position: absolute;
 			top: 0;
-      
-      div {
-    @deg: (360 / 6deg);
-    position: absolute;
-    left:100px;
-    bottom:-10px;
-    .origin(50%, 50%);
-    border-style: solid;
-    border-width: 260px 150px;
-    box-sizing: border-box;
-    &.color01{.rotate(@deg * 0);
-    .swatchtest(@purple);}
-    &.color02{.rotate(@deg * 1);
-    .swatchtest(@blue);}
-    &.color03{.rotate(@deg * 2);
-    .swatchtest(@green);}
-    &.color04{.rotate(@deg * 3);
-    .swatchtest(@yellow);}
-    &.color05{.rotate(@deg * 4);
-    .swatchtest(@orange);}
-    &.color06{.rotate(@deg * 5);
-    .swatchtest(@red);}
-  }
-  span {
-    cursor:pointer;
-    @wdeg: (360 / 6deg);
-    @extra: 23;
-    position: absolute;
-    left: 370px;
-    bottom: 225px;
-    .origin(-300%, 0%);
-    &.word{
-      font-size:20px;
-      width:40px; 
-      float:right;
-    }
-    &.word01{.rotate(@wdeg * 0 + @extra);}
-    &.word02{.rotate(@wdeg * 1 + @extra);}
-    &.word03{.rotate(@wdeg * 2 + @extra);}
-    &.word04{.rotate(@wdeg * 3 + @extra);}
-    &.word05{.rotate(@wdeg * 4 + @extra);}
-    &.word06{.rotate(@wdeg * 5 + @extra);}
-  }
-  
-  &:before{
-    position:absolute;
-    height:450px;
-    width:450px;
-    left:25px;
-    top:25px;
-    background-color:#222;
-    border-radius:50%;
-    .origin(50px, 150px);
-    .no-select();
-    &:hover {.rotate(540deg)}
-  }
+      /*border-radius: 50%;*/
+      overflow:hidden;
 		}
-    
-    
-    .color-palette a {
-      right: 0px;
-      top: 300px;
-      width: 125px;
-			height: 600px;
-			background-color: #f1f1f1;
-			display: flex;
-			flex-wrap: wrap;
-			position: absolute;
-			top: 0;
-      
-    }
     
     .palettebutton {
       position: absolute;
@@ -213,6 +145,11 @@
       cursor: pointer;
      }
       
+    .zoomIn {
+      position: absolute;
+      right: 200px;
+      
+    }
     #undo-button {
       position:absolute;
       right:0;
@@ -224,14 +161,15 @@
       font-size: 50px;
       cursor: pointer;
     }
-    .color-palette .closebtn {
-      position: absolute;
-      top: 20px;
-      right: 45px;
-      font-size: 60px;
-      color: white;
-      }
       
+    .origin(@x, @y) {
+	-webkit-transform-origin: @x @y;
+	   -moz-transform-origin: @x @y;
+	    -ms-transform-origin: @x @y;
+	     -o-transform-origin: @x @y;
+	        transform-origin: @x @y;
+}
+    
 		.swatch {
 			width: 48px;
 			height: 48px;
@@ -239,7 +177,23 @@
 			-webkit-border-radius: 12px;
 			border-radius: 12px;
 			margin: 4px;
+      position: relative;
 		}
+    
+    .swatch > div{
+      .origin(50%, 50%);
+    }
+    
+    .swatch:before {
+              position:absolute;
+    height:450px;
+    width:450px;
+    left:25px;
+    top:25px;
+    background-color:#222;
+    border-radius:50%;
+    }
+
 
 		#myCanvas {
 			padding-left: 0;
@@ -394,7 +348,7 @@ body {
 			var cp = {
 				history: ["#000000"], // black selected by default
 				options: [],
-				$container: $('.color-palette')
+				$container: $('#color-palette')
 			}
       
 			// your rectangle gradient interaction goes in this function
@@ -416,11 +370,11 @@ body {
       }
 
       openPalette = function() {
-       document.getElementById("myPalette").style.width = "200px";
+       document.getElementById("color-palette").style.width = "200px";
       }
 
       closePalette = function() {
-        document.getElementById("myPalette").style.width = "0";
+        document.getElementById("color-palette").style.width = "0";
       }
       
       function myGradientInteraction(){
@@ -481,20 +435,36 @@ body {
             
       undoButton = function() {
         document.getElementById('undo-button').onclick = function() {var lastPath = paths.pop();
-        lastPath.remove();};                                          
+        lastPath.remove();}                                        
       }
 
+      var degree = 360/19; 
 			// create a color palette with the given colors
 			function createColorPalette(colors){
-
+      var numColor = 0;
 				// create a swatch for each color
 				for (var i = colors.length - 1; i >= 0; i--) {
 					var $swatch = $("<div>").css("background-color", colors[i])
 									   .addClass("swatch");
+          
+          var rotateDegree = degree * numColor; 
+          //$swatch.css({"transform": "rotate(" + rotateDegree + "deg)"});
+          //$swatch.css("width", 0);
+          //$swatch.css("height", 0);
+
+          //$swatch.css({"border-top": "25px solid" + colors[i]});
+          //$swatch.css({"border-radius": "50%"});
+          //$swatch.css({"transform-origin": "50%"});
+          //$swatch.css({"right":"100px"});
+          //$swatch.css({"bottom": "-10px"});
+          //$swatch.css({"border-style": "solid"});
+          //$swatch.css({"border-width": "260px 30px"});
 					$swatch.click(function(){
 						// add color to the color palette history
 					  	cp.history.push($(this).css("background-color"));
 					});
+          numColor++;
+
 					cp.$container.append($swatch);
 				}
 			}
@@ -505,9 +475,8 @@ body {
 				$.getJSON('/static/coloring/vendors/material/material-colors.json', function(colors){
 					var keys = Object.keys(colors);
 					for (var i = keys.length - 1; i >= 0; i--) {
-						cp.options.push(colors[keys[i]][500]);
-            cp.options.push(colors[keys[i]][50]);
-            cp.options.push(colors[keys[i]]["a700"]);
+            cp.options.push(colors[keys[i]][500]);
+            cp.options.push(colors[keys[i]][200]);
 					}
 					createColorPalette(cp.options);
 				});
@@ -547,7 +516,7 @@ body {
 	</script>
 </head>
 <body>
-  <div class="color-palette">
+  <div id="color-palette">
     <div class="color-palette_part color01"></div>
     <div class="color-palette_part color02"></div>
     <div class="color-palette_part color03"></div>
