@@ -294,4 +294,15 @@ $(document).ready(function(){
 <button class="share-toggle-btn" onclick="openShare()"><i class="material-icons">arrow_forward_ios</i></button>
   
   </body>
+<script type="text/javascript">
+  $(document).ready(function(){
+    if($("input".is(':visible'))){console.log("input visible")}
+    $("input").on("keyup",function(){
+      var value=$(this).val().toLowerCase();
+      $('#search-load>.column *').filter(function(){
+        $(this).toggle($(this).text().toLowerCase().indexOf(value)>-1)
+      });
+    });
+  })
+</script>
 </html>
