@@ -7,360 +7,71 @@
   	<title>P3 Coloring</title>
 	<script type="text/javascript" src="{% static 'coloring/vendors/jquery/jquery-3.3.1.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'coloring/vendors/paper/paper-full.min.js' %}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.5/paper-core.js"></script>
-  <script src="https://kit.fontawesome.com/258137d1e0.js"></script>
   <link href='https://fonts.googleapis.com/css?family=DM Serif Display' rel='stylesheet'>
+  <link rel="stylesheet" href="https://use.typekit.net/udu0hib.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<style type="text/css">
-
-    /* User settings */
-
-.settings-overlay {
-  font-family: DM Serif Display;
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: white;
-  background-color: white;
-  overflow-x: hidden;
-  transition: 0.5s;
-}
-
-.settings-overlay a {
-  padding: 8px;
-  text-decoration: none;
-  font-size: 20px;
-  color: black;
-  display: block;
-  transition: 0.3s;
-}
-
-.settings-overlay a:hover, .settings-overlay a:focus {
-  color: #f1f1f1;
-}
-
-.settings-overlay .closebtn {
-  position: absolute;
-  top: 20px;
-  right: 45px;
-  font-size: 60px;
-  color: white;
-}
-
-.settings-btn {
-  position: absolute;
-  left: 0;
-  bottom: 50%;
-  background-color: white;
-  border: none;
-  color: black;
-  padding: 12px 16px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.menu-spacing{
-      padding-top: 150px;
-    }
-
-.log-out{
-      margin-left: 1em;
-      text-transform: uppercase;
-      padding: 1em;
-      background: transparent;
-      border: 1px solid;
-      outline: none;
-      width: 80%;
-    }
-
-    /* Old code -- needs cleaning */
-    /* add toggle bar for color palette*/
-    @blue: #2381ad;
-@green: #639b47;
-@yellow: #e1e23b;
-@orange: #f7941e;
-@red: #ba3e2e;
-@red: #9a1d34;
-@purple: #662a6c;
-
-.swatchtest(@color) {
-	 border-color: @color transparent transparent transparent;
-}
-.transition(@speed: 0.2s, @easing: ease) {
-	-webkit-transition: all @speed @easing;
-	   -moz-transition: all @speed @easing;
-	    -ms-transition: all @speed @easing;
-	     -o-transition: all @speed @easing;
-	        transition: all @speed @easing;
-}
-.no-select() {
-	  -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-         -o-user-select: none;
-            user-select: none;
-}
-.rotate(@degrees: 5deg) {
-	-webkit-transform: rotate(@degrees);
-	   -moz-transform: rotate(@degrees);
-	    -ms-transform: rotate(@degrees);
-	     -o-transform: rotate(@degrees);
-	        transform: rotate(@degrees);
-}
-.origin(@x, @y) {
-	-webkit-transform-origin: @x @y;
-	   -moz-transform-origin: @x @y;
-	    -ms-transform-origin: @x @y;
-	     -o-transform-origin: @x @y;
-	        transform-origin: @x @y;
-}
-		#color-palette {
-      right: 0px;
-      top: 300px;
-      width: 200px;
-			height: 700px;
-      overflow: hidden;
-			background-color: #f1f1f1;
-			display: flex;
-			flex-wrap: wrap;
-			position: absolute;
-			top: 0;
-      /*border-radius: 50%;*/
-      overflow:hidden;
-		}
-    
-    .palettebutton {
-      position: absolute;
-      right: 0;
-      bottom: 50%;
-      background-color: white;
-      border: none;
-      color: black;
-      padding: 5px 5px;
-      font-size: 40px;
-      cursor: pointer;
-     }
-      
-    .zoomIn {
-      position: absolute;
-      right: 200px;
-      
-    }
-    #undo-button {
-      position:absolute;
-      right:0;
-      bottom: 10%;
-      background-color: white;
-      border: none;
-      color: black;
-      padding: 5px 5px;
-      font-size: 50px;
-      cursor: pointer;
-    }
-      
-    .origin(@x, @y) {
-	-webkit-transform-origin: @x @y;
-	   -moz-transform-origin: @x @y;
-	    -ms-transform-origin: @x @y;
-	     -o-transform-origin: @x @y;
-	        transform-origin: @x @y;
-}
-    
-		.swatch {
-			width: 48px;
-			height: 48px;
-			-moz-border-radius: 12px;
-			-webkit-border-radius: 12px;
-			border-radius: 12px;
-			margin: 4px;
-      position: relative;
-		}
-    
-    .swatch > div{
-      .origin(50%, 50%);
-    }
-    
-    .swatch:before {
-              position:absolute;
-    height:450px;
-    width:450px;
-    left:25px;
-    top:25px;
-    background-color:#222;
-    border-radius:50%;
-    }
-
-
-		#myCanvas {
-			padding-left: 0;
-		    padding-right: 0;
-		    margin-left: auto;
-		    margin-right: auto;
-		    display: block;
-		}
-/* Music toggle */
-
-.overlay {
-  height: 0%;
-  width: 100%;
-  position: fixed;
-  z-index: 1;
-  bottom: 0;
-  background-color: white;
-  background-color: white;
-  overflow-y: hidden;
-  transition: 0.5s;
-}
-
-    .overlay a {
-  padding: 8px;
-  text-decoration: none;
-  font-size: 20px;
-  color: black;
-  display: block;
-  transition: 0.3s;
-}
-
-.overlay-content {
-  position: relative;
-  top: 5%;
-  width: 100%;
-  text-align: center;
-  margin-top: 30px;
-}
-
-.overlay .closebtn {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  font-size: 30px;
-  color: white;
-}
-
-.overlay a:hover, .overlay a:focus {
-  color: #f1f1f1;
-}
-
-.music-btn {
-  position: absolute;
-  right: 0;
-  bottom: 10px;
-  background-color: white;
-  border: none;
-  color: black;
-  padding: 12px 16px;
-  font-size: 30px;
-  cursor: pointer;
-}
-    
-#searchFunct{
-  position: absolute;
-  left: 0;
-  top: 10px;
-  padding: 12px 16px;
-  font-size: 30px;
-  cursor: pointer;
-}
-
-.search{
-  width:150px;
-  display:none;
- }
-   
-#searchInput{
-  height: 40px;
-  width: 1200px;
-  line-height: 50px;
-  border: 1px;
-  padding: 0px;
-  margin: 0px;
-  margin-top: 0px;
-  size: 12
-}
-    
-body {
-  background-color: #f1f1f1;
-  padding: 10px;
-  font-family: Arial;
-}
-
-.archive h4 {
-  margin: 0px 0px 0px 0px; 
-  padding: 5px 0px 0px 0px;}
-
-.archive p {
-  margin: 0px 0px 0px 0px; 
-  padding: 5px 0px 0px 0px;}
-
-.archive-row {
-  margin: 10px -16px;
-}
-
-.archive-row,
-.archive-row > .archive-column {
-  padding: 8px;
-}
-
-.archive-column {
-  float: left;
-  width: 25%;
-  display: none; /* Hide all elements by default */
-}
-
-/* Clear floats after rows */ 
-.archive-row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Content */
-.archive-content {
-  background-color: white;
-  padding: 5px;
-}
-	</style>
+  <script src="https://kit.fontawesome.com/258137d1e0.js"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'fonts/style.css' %}"/>
 
 <script type="text/javascript" canvas="canvas">
-  var openMusic;
-  var openSettings;
-  var closeMusic;
-  var closeSettings;
-  var openPalette; 
+  var openSearch;
+  var closeSearch;
+  var openArchive;
+  var closeArchive;
+  var openPalette;
   var closePalette;
+  var openMusic;
+  var closeMusic;
+  var openSettings;
+  var closeSettings;
+  var openShare;
+  var closeShare;
   var undoButton;
 
 		window.onload = function() {
 			var canvas = document.getElementById('myCanvas');
 
-			// coloring page
-        var mandala = {
+			// Colorable album cover
+        var album = {
 				item: null,
 				lastClicked: null,
 				filePath: '/static/coloring/images/debussy_vector.svg'
 			};
 
-			// color palette
+			// Color palette
 			var cp = {
 				history: ["#000000"], // black selected by default
 				options: [],
 				$container: $('#color-palette')
 			}
       
-			// your rectangle gradient interaction goes in this function
-			// you may also add code outside of the function (e.g., global variables)
-      openSettings = function() {
-        document.getElementById("settings").style.width = "25%";
+      // Open-close feature for toggle menus 
+      openSearch = function() {
+        document.getElementById("search").style.height = "100%";
       }
 
-      closeSettings = function() {
-        document.getElementById("settings").style.width = "0%";
+      closeSearch = function() {
+        document.getElementById("search").style.height = "0%";
+      }
+      
+      openArchive = function() {
+        document.getElementById("archive").style.height = "32%";
       }
 
+      closeArchive = function() {
+        document.getElementById("archive").style.height = "0%";
+      }
+      
+      openPalette = function() {
+        document.getElementById("palette").style.width = "15%";
+      }
+
+      closePalette = function() {
+        document.getElementById("palette").style.width = "0%";
+      }
+      
       openMusic = function() {
         document.getElementById("music").style.height = "50%";
       }
@@ -368,61 +79,36 @@ body {
       closeMusic = function() {
         document.getElementById("music").style.height = "0%";
       }
-
-      openPalette = function() {
-       document.getElementById("color-palette").style.width = "200px";
+      
+      openSettings = function() {
+        document.getElementById("settings").style.width = "20%";
       }
 
-      closePalette = function() {
-        document.getElementById("color-palette").style.width = "0";
+      closeSettings = function() {
+        document.getElementById("settings").style.width = "0%";
       }
       
-      function myGradientInteraction(){
-        var tool = new paper.Tool();
+      openShare = function() {
+        document.getElementById("share").style.width = "20%";
+      }
 
-        var rectangle = new paper.Rectangle(160, 258, 400, 200);
-        var path = new paper.Path.Rectangle(rectangle);
-        path.fillColor = 'red';
+      closeShare = function() {
+        document.getElementById("share").style.width = "0%";
+      }
 
-        var orig;
-        var dest;
 
-				tool.onMouseDown = function (event) {
-          orig = event.point;
-				}
-
-				tool.onMouseUp = function (event) {
-          // Set rectangle fillColor to gradient
-          dest = event.point;
-          // Stops attr == last two colors selected from color palatte (in cp.history)
-          var selectColors = cp.history.slice(Math.max(cp.history.length - 2));
-
-          // Set origin == mouse-down location; destination == mouse-up location
-          path.fillColor = {
-            gradient: {
-              stops: selectColors,
-              radial: false
-            },
-            origin: orig,
-            destination: dest
-          };
-				}
-			}
-
-			// your custom interaction goes here!
-
-			// you may replace everything
+			// Coloring tool 
       var path;
       var paths = [];
 
       function myCustomInteraction() {
 
 				var tool = new paper.Tool();
-        
+
         tool.onMouseDown = function(event) {
           path = new paper.Path();
           path.strokeColor = cp.history[cp.history.length - 1];
-          path.strokeWidth = 15;
+          path.strokeWidth = 7;
           path.add(event.point);
         }
 
@@ -432,64 +118,45 @@ body {
         }
 			}
 
-            
       undoButton = function() {
         document.getElementById('undo-button').onclick = function() {var lastPath = paths.pop();
         lastPath.remove();}                                        
       }
 
-      var degree = 360/19; 
-			// create a color palette with the given colors
+			// Create a color palette with the given colors
 			function createColorPalette(colors){
-      var numColor = 0;
-				// create a swatch for each color
+
+				// Create a swatch for each color
 				for (var i = colors.length - 1; i >= 0; i--) {
 					var $swatch = $("<div>").css("background-color", colors[i])
 									   .addClass("swatch");
-          
-          var rotateDegree = degree * numColor; 
-          //$swatch.css({"transform": "rotate(" + rotateDegree + "deg)"});
-          //$swatch.css("width", 0);
-          //$swatch.css("height", 0);
-
-          //$swatch.css({"border-top": "25px solid" + colors[i]});
-          //$swatch.css({"border-radius": "50%"});
-          //$swatch.css({"transform-origin": "50%"});
-          //$swatch.css({"right":"100px"});
-          //$swatch.css({"bottom": "-10px"});
-          //$swatch.css({"border-style": "solid"});
-          //$swatch.css({"border-width": "260px 30px"});
 					$swatch.click(function(){
-						// add color to the color palette history
+						// Add color to the color palette history
 					  	cp.history.push($(this).css("background-color"));
 					});
-          numColor++;
-
 					cp.$container.append($swatch);
 				}
 			}
 
-			// loads a set of colors from a json to create a color palette
+			// Loads a set of colors from a JSON to create a color palette
 			function getColorsCreatePalette(){
 				cp.$container.html(" ");
 				$.getJSON('/static/coloring/vendors/material/material-colors.json', function(colors){
 					var keys = Object.keys(colors);
 					for (var i = keys.length - 1; i >= 0; i--) {
-            cp.options.push(colors[keys[i]][500]);
-            cp.options.push(colors[keys[i]][200]);
+						cp.options.push(colors[keys[i]][500]);
 					}
 					createColorPalette(cp.options);
 				});
 			}
 
-
 			function init(custom){
 				paper.setup(canvas);
 				getColorsCreatePalette();
 
-				paper.project.importSVG(mandala.filePath, function(item) {
-					mandala.item = item._children["design-freepik"];
-				    paper.project.insertLayer(0,mandala.item);
+				paper.project.importSVG(album.filePath, function(item) {
+					album.item = item._children["design-freepik"];
+				    paper.project.insertLayer(0,album.item);
 
 				    if (custom) {
 				    	myCustomInteraction();
@@ -500,11 +167,6 @@ body {
 				});
 			}
 
-
-			// To see your myGradientInteraction version visit:
-			// http://<your url>:8000/coloring/?type=gradient
-			// To see your myCustomInteraction version visit:
-			// http://<your url>:8000/coloring/
 			var url = window.location.href;
 			if (url.indexOf("gradient") > -1) {
 				init(false);
@@ -513,229 +175,112 @@ body {
 			}
 
 		}
+    
 	</script>
+    <script>
+$(document).ready(function(){
+   $('#archive-load').load("http://p2-paperjs-tffnybnsws-tboonsawas248165.codeanyapp.com/coloring/archive/");
+});
+</script>
+      <script>
+$(document).ready(function(){
+   $('#search-load').load("http://p2-paperjs-tffnybnsws-tboonsawas248165.codeanyapp.com/coloring/search/");
+});
+</script>
 </head>
-<body>
-  <div id="color-palette">
-    <div class="color-palette_part color01"></div>
-    <div class="color-palette_part color02"></div>
-    <div class="color-palette_part color03"></div>
-    <div class="color-palette_part color04"></div>
-    <div class="color-palette_part word color05"></div>
-    <div class="color-palette_part word color06"></div>
-    <span class="color-palette_part word word01">Spinning</span>
-    <span class="color-palette_part word word02">The</span>
-    <span class="color-palette_part word word03">Circle</span>
-    <span class="color-palette_part word word04">Is</span>
-    <span class="color-palette_part word word05">Super</span>
-    <span class="color-palette_part word word06">Exciting</span>
-  </div>
   
+<body>
+	<canvas id="myCanvas" width="750px" height="750px"></canvas>
+  
+  <!-- SEARCH -->
+  <div id="search" class="search-overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeSearch()">&times;</a>
+  <div class="search-overlay-content">
+    <div id="search-load"></div>
+    </div>
+</div>
+<!-- Music player icon -->
+<button class="search-toggle-btn" onclick="openSearch()"><img src="https://img.icons8.com/small/64/000000/search.png" alt="" width="30" height="30"></button>
+
+  <!-- ARCHIVE -->
+  <div id="archive" class="archive-overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeArchive()">&times;</a>
+  <div class="archive-overlay-content">
+    <div id="archive-load"></div>
+    </div>
+</div>
+<!-- Music player icon -->
+<button class="archive-toggle-btn" onclick="openArchive()"><i class="material-icons" style="font-size:30px;">collections</i></button>
+
+<!-- TOOL PALETTE -->
+  <div id="palette" class="palette-overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closePalette()"><i class="material-icons">arrow_forward_ios</i></a>
+  <div class="palette-overlay-content">
+	<div id="color-palette"></div>
+  </div>
+</div>
+
+<!-- undo button --> 
 <button id="undo-button" onclick="undoButton()"><i class="fas fa-undo-alt"></i>
   </button>
-  
-<div id='text'><p>Scroll On The Wheel</p></div>
-	<canvas id="myCanvas" width="750px" height="750px"></canvas>
 
-  <!-- <div id="myPalette" class="color-palette">
-<a href="javascript:void(0)" class="closebtn" onclick="closePalette()">&times;</a></div> --> 
+<!-- Right toggle arrow -->
+<button class="palette-toggle-btn" onclick="openPalette()"><i class="material-icons" style="font-size:20px;">arrow_back_ios</i></button>
+
+<!-- MUSIC PLAYER -->
+<div id="music" class="music-overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeMusic()">&times;</a>
+  <div class="music-overlay-content">
+    <iframe src="https://open.spotify.com/embed/album/1O0zuT2lYKReG237V89YV5" width="100%" height="750" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></div>
+</div>
+<!-- Music player icon -->
+<button class="music-toggle-btn" onclick="openMusic()"><i class="fa fa-spotify"></i></button>
+
   
-  <button class="palettebutton" onclick="openPalette()"><i class="fas fa-palette"></i></button>
-  
+  <!-- USER SETTINGS -->
   <div id="settings" class="settings-overlay">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeSettings()">&times;</a>
-  <div class="overlay-content">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeSettings()"><i class="material-icons">arrow_back_ios</i></a>
+  <div class="settings-overlay-content">
 <i class="material-icons" style="font-size:80px;">account_circle</i>
     <a href="#">Profile</a>
     <a href="#">Account</a>
     <a href="#">Social</a>
     <a href="#">Music Quality</a>
     <a href="#">Notifications</a>
-    <div class="menu-spacing">
-  <button class="log-out">
+    <div class="settings-menu-spacing">
+  <button class="settings-log-out">
     log out
   </button>
   </div>
   </div>
 </div>
+<!-- Toggle icon -->
+<button class="settings-toggle-btn" onclick="openSettings()"><i class="material-icons">menu</i></button>
 
-<button class="settings-btn" onclick="openSettings()"><i class="material-icons" style="font-size:20px;">arrow_forward_ios</i></button>
-
-<div id="music" class="overlay">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeMusic()">&times;</a>
-  <div class="overlay-content">
-    <iframe src="https://open.spotify.com/embed/album/1O0zuT2lYKReG237V89YV5" width="100%" height="750" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></div>
-</div>
-
-<button class="music-btn" onclick="openMusic()"><i class="fa fa-music"></i></button>
-  
- <div id = "searchFunct">   
-  <img src="/static/coloring/images/search.png" alt="Find" id="find-btn" height="30" width="30">
-  <div class="search">
-<!--     <input id="searchInput" type="text" placeholder="Artists/Songs">
-    <div class="Results">
-      <!-- Portfolio Gallery Grid -->
-<!--       <div class="archive-row">
-<!--         <div class="archive-column in-progress">
-          <div class="archive-content">
-            <img src="https://i.postimg.cc/Cxq36XQH/air-thumb.jpg" alt="" style="width:100%">
-            <h4>Moon Safari</h4>
-            <p>Air</p>
-          </div>
-        </div>
-        <div class="archive-column in-progress">
-          <div class="archive-content">
-          <img src="https://i.postimg.cc/PqngGKGG/aphex-twin-thumb.jpg" alt="Lights" style="width:100%">
-            <h4>Richard D. James</h4>
-            <p>Aphex Twin</p>
-          </div>
-        </div>
-        <div class="archive-column in-progress">
-          <div class="archive-content"> -->
-<!--           <img src="https://i.postimg.cc/Jh39RJms/beach-boys-thumb.jpg" alt="" style="width:100%">
-            <h4>Smile</h4>
-            <p>The Beach Boys</p>
-          </div>
-        </div>
-
-        <div class="archive-column completed">
-          <div class="archive-content">
-            <img src="https://i.postimg.cc/KzfSDTs6/dan-deacon-thumb.jpg" alt="" style="width:100%">
-            <h4>Glass Riffer</h4>
-            <p>Dan Deacon</p>
-          </div>
-        </div>
-        <div class="archive-column completed">
-          <div class="archive-content">
-          <img src="https://i.postimg.cc/8cC8KC2j/kraftwerk-thumb.jpg" alt="" style="width:100%">
-            <h4>Computer World</h4>
-            <p>Kraftwerk</p>
-          </div>
-        </div>
-        <div class="archive-column completed">
-          <div class="archive-content">
-          <img src="https://i.postimg.cc/90g6vh21/prince-thumb.jpg" alt="" style="width:100%">
-            <h4>1999</h4>
-            <p>Prince</p>
-          </div>
-        </div>
-
-        <div class="archive-column for-later">
-          <div class="archive-content">
-            <img src="https://i.postimg.cc/02bR7bG4/radiohead-kid-A-thumb.jpg" alt="" style="width:100%">
-            <h4>Kid A</h4>
-            <p>Radiohead</p>
-          </div>
-        </div>
-        <div class="archive-column for-later">
-          <div class="archive-content">
-          <img src="https://i.postimg.cc/HLGgYdyh/the-beatles-thumb.jpg" alt="" style="width:100%">
-            <h4>The White Album</h4>
-            <p>The Beatles</p>
-          </div>
-        </div>
-        <div class="archive-column for-later">
-          <div class="archive-content">
-          <img src="https://i.postimg.cc/ydsCRjnh/tribe-called-quest-thumb.jpg" alt="" style="width:100%">
-            <h4>The Low End Theory</h4>
-            <p>A Tribe Called Quest</p>
-          </div>
-       </div> -->
-<!-- END GRID -->
-<!--       </div> -->
-<!--     </div>  -->
-    
-    
-    <h1>Spotify Song Search</h1>
-        <form>
-          <input type="search" placeholder="Search for a album or band" id="song">
-          <button type="submit" id="search">Search</button>
-        </form>  
-  </div>
-  <div id="music">
+  <!-- SHARE & EXPORT -->
+  <div id="share" class="share-overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeShare()"><i class="material-icons">arrow_back_ios</i></a>
+  <div class="share-overlay-content">
+    <h3>Share & Export</h3>
+    </h3>
+      <button class="share-log-out">
+    save to collection
+    </button>
+      <button class="share-log-out">
+    print
+  </button>
+    <div class="social">
+      <i class="fa fa-envelope-open-text"></i>
+      <i class="fa fa-pinterest"></i>
+      <i class="fa fa-instagram"></i>
+      <i class="fa fa-facebook"></i>
+      <i class="fa fa-twitter"></i>
+      <i class="fa fa-sms"></i>
     </div>
-</div>
-
-</body>
+  </div>
+  </div>
+<!-- Toggle icon -->
+<button class="share-toggle-btn" onclick="openShare()"><i class="material-icons">arrow_forward_ios</i></button>
   
-  <script type="text/javascript">
-//    function onClickBlank(){
-// //      var target;
-// //      if(arguments===undefined){target = null;}
-// //      else{
-//       $("body").click(function(e){
-//          target = $(e.target);
-//         for (let ind=0; ind<arguments.length;ind++){
-//           if (target.is(arguments[ind])) {
-//             return false}}
-//         return true
-//       });
-// //       });
-// //      }
-//    }
-    
-//    $(document).ready(function(){
-// //     $(".search").hide("fast");
-    
-//     $("#find-btn").click(function(){
-//       $("#find-btn").toggle("slow",function(){
-//         $(".search").toggle("fast",function(){       
-//         $("#searchInput").on("keyup",function(){
-//           var value=$(this).val().toLowerCase();
-//           $(".Results *").filter(function(){
-//           $(this).toggle($(this).text().toLowerCase().indexOf(value)>-1)
-//           });
-//         });       
-//         $('body').click(function(e) {
-//           var target = $(e.target);
-//           if(!target.is('#searchInput') && !target.is(".Results")) {
-//             if (! $('#find-btn').is(':visible') ) { 
-//               $(".search").toggle("slow",function(){
-//                 $('#find-btn').show("slow");
-//               });
-//             }
-//           }
-//         });
-
-//       });
-//       });
-      
-//     });
-//    });
-    
-    
-$(document).ready(function() {
-    $('form').submit(function(evt) {
-            evt.preventDefault();
-            var spotifyAPI = "https://api.spotify.com/v1/search" // needs end point
-            var spotifyOptions = {
-                "query": $("#song").val(),
-                "type":"album",
-                "limit": "21"
-            };
-            $.getJSON(spotifyAPI, spotifyOptions, displayAlbums);
-            function displayAlbums(data) {
-                var albumHTML = '<ul>'; // Opening ul tag to hold a single album result
-                $.each(data.albums.items, function(i, album) {
-                    albumHTML += '<div class="album" album-id="' + i + '">';
-                    albumHTML += '<li>'; // You may need to use bootstrap to style array items correctly
-                    albumHTML += '<a href="#">';
-                    albumHTML += '<img src="' + album.images[0].url + '" alt="' + album.artists.name + '">';
-                    albumHTML += '</a>';
-                    albumHTML += '</div>';
-                    return albumHTML;
-                })
-
-                albumHTML += '</ul>';
-                $('#music').html(albumHTML);
-
-            }
-
-
-    });
-
-});
-  
- </script>
-  
+  </body>
 </html>

@@ -1,0 +1,245 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  	<title>Archive</title>
+  	<link rel="stylesheet" type="text/css" href="{% static 'css/archive-style.css' %}"/>
+    <link href='https://fonts.googleapis.com/css?family=Mukta|Noto Serif' rel='stylesheet'>
+
+
+</head>
+<body>	
+    <div id="archive-options">
+  <button class="archive-btn active" onclick="filterSelection('in-progress')"> In Progress</button>
+  <button class="archive-btn" onclick="filterSelection('completed')"> Completed</button>
+  <button class="archive-btn" onclick="filterSelection('for-later')"> For Later</button>
+</div>
+    <div class="archive-menu-spacing">
+<!-- ARCHIVE PORTFOLIO GALLERY GRID -->
+<div class="archive-row">
+  <div class="archive-column in-progress">
+    <div class="archive-content">
+      <img src="https://i.postimg.cc/Wdhv7z1Q/black-marble-thumb.jpg" alt="" style="width:80%">
+      <h4>It's Immaterial</h4>
+      <p>Black Marble</p>
+    </div>
+  </div>
+  <div class="archive-column in-progress">
+    <div class="archive-content">
+    <img src="https://i.postimg.cc/PC9kVHLN/stereolab-thumb.jpg" alt="Lights" style="width:80%">
+      <h4>Emperor Tomato Ketchup</h4>
+      <p>Stereolab</p>
+    </div>
+  </div>
+  <div class="archive-column in-progress">
+    <div class="archive-content">
+    <img src="https://i.postimg.cc/1gCdhpk4/tribe-called-quest-thumb.jpg" alt="" style="width:80%">
+      <h4>The Low End Theory</h4>
+      <p>A Tribe Called Quest</p>
+    </div>
+  </div>
+    <div class="archive-column in-progress">
+    <div class="archive-content">
+    <img src="https://i.postimg.cc/w3Qgqnrb/lush-thumb.jpg" alt="" style="width:80%">
+      <h4>Split</h4>
+      <p>Lush</p>
+    </div>
+  </div>
+    <div class="archive-column in-progress">
+    <div class="archive-content">
+    <img src="https://i.postimg.cc/NKbJm6fb/aphex-twin-thumb.jpg" alt="" style="width:80%">
+      <h4>Richard D. James Album</h4>
+      <p>Aphex Twin</p>
+    </div>
+  </div>
+    <div class="archive-column in-progress">
+    <div class="archive-content">
+    <img src="https://i.postimg.cc/CzTQgMQC/radiohead-kid-A-thumb.jpg" alt="" style="width:80%">
+      <h4>Kid A</h4>
+      <p>Radiohead</p>
+    </div>
+  </div>
+    <div class="archive-column in-progress">
+    <div class="archive-content">
+    <img src="https://i.postimg.cc/FYhCYWm7/air-thumb.jpg" alt="" style="width:80%">
+      <h4>Moon Safari</h4>
+      <p>Air</p>
+    </div>
+  </div>
+    <div class="archive-column in-progress">
+    <div class="archive-content">
+    <img src="https://i.postimg.cc/Jh39RJms/beach-boys-thumb.jpg" alt="" style="width:80%">
+      <h4>Smile</h4>
+      <p>The Beach Boys</p>
+    </div>
+  </div>
+  
+  <div class="archive-column completed">
+    <div class="archive-content">
+      <img src="https://i.postimg.cc/KzfSDTs6/dan-deacon-thumb.jpg" alt="" style="width:80%">
+      <h4>Glass Riffer</h4>
+      <p>Dan Deacon</p>
+    </div>
+  </div>
+  <div class="archive-column completed">
+    <div class="archive-content">
+    <img src="https://i.postimg.cc/Bj3kxZ5Z/velvet-underground-thumb.jpg" alt="" style="width:80%">
+      <h4>The Velvet Underground & Nico</h4>
+      <p>The Velvet Underground</p>
+    </div>
+  </div>
+  <div class="archive-column completed">
+    <div class="archive-content">
+    <img src="https://i.postimg.cc/HLGgYdyh/the-beatles-thumb.jpg" alt="" style="width:80%">
+      <h4>The Beatles</h4>
+      <p>The Beatles</p>
+    </div>
+  </div>
+  <div class="archive-column completed">
+    <div class="archive-content">
+      <img src="https://i.postimg.cc/qzmrny4s/radiohead-in-rainbows-thumb.jpg" alt="" style="width:80%">
+      <h4>In Rainbows</h4>
+      <p>Radiohead</p>
+    </div>
+     </div>  
+  <div class="archive-column completed">
+    <div class="archive-content">
+      <img src="https://i.postimg.cc/yYvGKVpC/the-smiths-thumb.jpg" alt="" style="width:80%">
+      <h4>Hatful of Hollow</h4>
+      <p>The Smiths</p>
+    </div>
+  </div>
+  <div class="archive-column completed">
+    <div class="archive-content">
+      <img src="https://i.postimg.cc/8cC8KC2j/kraftwerk-thumb.jpg" alt="" style="width:80%">
+      <h4>Computer World</h4>
+      <p>Kraftwerk</p>
+    </div>
+  </div>
+  <div class="archive-column completed">
+    <div class="archive-content">
+    <img src="https://i.postimg.cc/90g6vh21/prince-thumb.jpg" alt="" style="width:80%">
+      <h4>1999</h4>
+      <p>Prince</p>
+    </div>
+  </div>
+    <div class="archive-column completed">
+    <div class="archive-content">
+      <img src="https://i.postimg.cc/7CGW5TZZ/the-cure-thumb.jpg" alt="" style="width:80%">
+      <h4>Boys Don't Cry</h4>
+      <p>The Cure</p>
+    </div>
+  </div>
+  
+  <div class="archive-column for-later">
+    <div class="archive-content">
+      <img src="https://i.postimg.cc/3ysbmJkC/drugdealer-thumb.jpg" alt="" style="width:80%">
+      <h4>The End of Comedy</h4>
+      <p>Drugdealer</p>
+    </div>
+  </div>
+  <div class="archive-column for-later">
+    <div class="archive-content">
+    <img src="https://i.postimg.cc/SjhmpmgM/stone-roses-thumb.jpg" alt="" style="width:80%">
+      <h4>The Stone Roses</h4>
+      <p>The Stone Roses</p>
+    </div>
+  </div>
+  <div class="archive-column for-later">
+    <div class="archive-content">
+    <img src="https://i.postimg.cc/4HZL2LbY/devo-thumb.jpg" alt="" style="width:80%">
+      <h4>Q: Are We Not Men? A: We Are Devo!</h4>
+      <p>Devo</p>
+    </div>
+  </div>
+    <div class="archive-column for-later">
+    <div class="archive-content">
+      <img src="https://i.postimg.cc/4H58D6BB/human-bloom-thumb.jpg" alt="" style="width:80%">
+      <h4>Human Bloom</h4>
+      <p>Radwimps</p>
+    </div>
+  </div>
+    <div class="archive-column for-later">
+    <div class="archive-content">
+      <img src="https://i.postimg.cc/qN7YdFfn/david-bowie-thumb.jpg" alt="" style="width:80%">
+      <h4>Hunky Dory</h4>
+      <p>David Bowie</p>
+    </div>
+  </div>
+    <div class="archive-column for-later">
+    <div class="archive-content">
+      <img src="https://i.postimg.cc/CBbrNTDy/nick-drake-thumb.jpg" alt="" style="width:80%">
+      <h4>Pink Moon</h4>
+      <p>Nick Drake</p>
+    </div>
+  </div>
+    <div class="archive-column for-later">
+    <div class="archive-content">
+      <img src="https://i.postimg.cc/G4Sf3jrf/zombies-thumb.jpg" alt="" style="width:80%">
+      <h4>Odessey and Oracle</h4>
+      <p>The Zombies</p>
+    </div>
+  </div>
+    <div class="archive-column for-later">
+    <div class="archive-content">
+      <img src="https://i.postimg.cc/0Kd38R2G/erik-satie-thumb.jpg" alt="" style="width:80%">
+      <h4>Parade, Gymnopédies, Mercure & Relâche</h4>
+      <p>Erik Satie</p>
+    </div>
+  </div>
+<!-- END GRID -->
+</div>
+  </div>
+<!-- END ARCHIVE MAIN -->
+
+<script>
+
+filterSelection("in-progress")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("archive-column");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    archRemoveClass(x[i], "archive-show");
+    if (x[i].className.indexOf(c) > -1) archAddClass(x[i], "archive-show");
+  }
+}
+
+function archAddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function archRemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("archive-options");
+var btns = btnContainer.getElementsByClassName("archive-btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+
+</script>
+  </body>
+</html>
