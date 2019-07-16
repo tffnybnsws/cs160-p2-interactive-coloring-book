@@ -65,7 +65,7 @@
       }
       
       openPalette = function() {
-        document.getElementById("palette").style.width = "15%";
+        document.getElementById("palette").style.width = "20%";
       }
 
       closePalette = function() {
@@ -119,9 +119,15 @@
 			}
 
       undoButton = function() {
-        document.getElementById('undo-button').onclick = function() {var lastPath = paths.pop();
-        lastPath.remove();}                                        
+        console.log('stop');
+        var lastPath = paths.pop();
+        lastPath.remove();                                        
       }
+      
+      //$('.palette-overlay > .undo-button').on('click', function (event) {
+       // var lastPath = paths.pop();
+       // lastPath.remove();
+      //})
 
 			// Create a color palette with the given colors
 			function createColorPalette(colors){
@@ -143,8 +149,10 @@
 				cp.$container.html(" ");
 				$.getJSON('/static/coloring/vendors/material/material-colors.json', function(colors){
 					var keys = Object.keys(colors);
+          cp.options.push("#ffffff");
 					for (var i = keys.length - 1; i >= 0; i--) {
 						cp.options.push(colors[keys[i]][500]);
+            cp.options.push(colors[keys[i]][300]);
 					}
 					createColorPalette(cp.options);
 				});
@@ -179,12 +187,12 @@
 	</script>
     <script>
 $(document).ready(function(){
-   $('#archive-load').load("http://p2-paperjs-tffnybnsws-tboonsawas248165.codeanyapp.com/coloring/archive/");
+   $('#archive-load').load("http://cs160-p2-interactive-coloring-book-reiichannn.codeanyapp.com/coloring/archive");
 });
 </script>
       <script>
 $(document).ready(function(){
-   $('#search-load').load("http://p2-paperjs-tffnybnsws-tboonsawas248165.codeanyapp.com/coloring/search/");
+   $('#search-load').load("http://cs160-p2-interactive-coloring-book-reiichannn.codeanyapp.com/coloring/search");
 });
 </script>
 </head>
@@ -217,6 +225,9 @@ $(document).ready(function(){
   <a href="javascript:void(0)" class="closebtn" onclick="closePalette()"><i class="material-icons">arrow_forward_ios</i></a>
   <div class="palette-overlay-content">
 	<div id="color-palette"></div>
+  <div class="undo-button" onclick="undoButton()">
+    <i class="fas fa-undo-alt"></i>
+    </div>
   </div>
 </div>
 
@@ -234,7 +245,7 @@ $(document).ready(function(){
     <iframe src="https://open.spotify.com/embed/album/1O0zuT2lYKReG237V89YV5" width="100%" height="750" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></div>
 </div>
 <!-- Music player icon -->
-<button class="music-toggle-btn" onclick="openMusic()"><i class="fa fa-spotify"></i></button>
+<button class="music-toggle-btn" onclick="openMusic()"><i class="fab fa-spotify"></i></button>
 
   
   <!-- USER SETTINGS -->
@@ -271,10 +282,10 @@ $(document).ready(function(){
   </button>
     <div class="social">
       <i class="fa fa-envelope-open-text"></i>
-      <i class="fa fa-pinterest"></i>
-      <i class="fa fa-instagram"></i>
-      <i class="fa fa-facebook"></i>
-      <i class="fa fa-twitter"></i>
+      <i class="fab fa-pinterest"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-twitter"></i>
       <i class="fa fa-sms"></i>
     </div>
   </div>
