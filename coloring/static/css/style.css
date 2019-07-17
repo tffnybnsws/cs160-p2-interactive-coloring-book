@@ -362,7 +362,8 @@ h3 {
   }
 
   .palette-overlay .closebtn {
-  position: absolute;
+  position: relative;
+  z-index: 1;
   top: 50%;
   left: 5px;
   color: black;
@@ -394,8 +395,9 @@ h3 {
   }
 
 		#color-palette {
-      right: 0px;
-      width: 300px;
+      float: right;
+      margin-top: 1px;
+      width: 270px;
       height: 200px;
       background-color: white;
       display: flex;
