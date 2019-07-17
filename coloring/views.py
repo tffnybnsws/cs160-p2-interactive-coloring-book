@@ -9,5 +9,3 @@ def search(request):
 def archive(request):
     return render(request, 'coloring/archive.html')
   
-def archive(request):
-    return render(request, 'coloring/aphex.html')
